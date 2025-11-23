@@ -356,17 +356,17 @@ dns_data_clean |>
 http://ip-api.com (API-эндпоинт – http://ip-api.com/json).
 
 ``` r
-###Задание 10: Определите местоположение (страну, город) и организацию-провайдера для топ-10 доменов.
+
 
 library(httr)
 library(jsonlite)
 
-# Получаем топ-10 доменов из dns_data_clean
+
 top_10_domains <- dns_data_clean %>%
   count(query, sort = TRUE) %>%
   head(10)
 
-# Функция для получения геоданных по домену
+
 get_domain_geo_info <- function(domain) {
   # Пропускаем некорректные домены - возвращаем NA
   if (grepl("[*\\\\\\x00]", domain) || domain == "-" || nchar(domain) < 3) {
@@ -381,7 +381,7 @@ get_domain_geo_info <- function(domain) {
   }
   
   tryCatch({
-    # Делаем запрос к API по домену с дополнительными полями
+ 
     url <- paste0("http://ip-api.com/json/", domain, "?fields=status,message,country,city,isp,org,as,query")
     response <- GET(url, timeout(5))
     
@@ -429,11 +429,9 @@ get_domain_geo_info <- function(domain) {
   })
 }
 
-# Получаем геоданные для каждого домена
+
 cat("Получение геоданных для топ-10 доменов...\n")
 ```
-
-    Получение геоданных для топ-10 доменов...
 
 ``` r
 geo_results <- map_dfr(top_10_domains$query, function(domain) {
@@ -457,7 +455,7 @@ geo_results <- map_dfr(top_10_domains$query, function(domain) {
     Обработка: WPAD 
 
 ``` r
-# Выводим результаты
+
 geo_results
 ```
 
