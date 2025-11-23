@@ -281,7 +281,7 @@ geo_results <- map_dfr(top_10_domains$query, function(domain) {
   return(result)
 })
 
-# Выводим результаты
+
 geo_results
 ```
 
