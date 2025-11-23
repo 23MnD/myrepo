@@ -1,0 +1,294 @@
+---
+title: "Основы обработки данных с помощью R и Dplyr"
+author: "artem23mnd@yandex.ru"
+format: 
+  md:
+    output-file: README.md
+---
+
+## Цель работы
+
+1. Зекрепить практические навыки использования языка программирования R для обработки данных
+2. Закрепить знания основных функций обработки данных экосистемы tidyverse языка R
+3. Закрепить навыки исследования метаданных DNS трафика
+
+## Исходные данные
+
+1. Операционная система Windows
+2.  Rstudio Desktop
+3.  Интерпретатор языка R 4.5.1
+
+## Задание
+
+Используя программный пакет `dplyr`, освоить анализ DNS логов с помощью языка программирования R.
+
+## Ход работы
+
+1. Импортируйте данные DNS – https://storage.yandexcloud.net/dataset.ctfsec/dns.zip. Данные были собраны с помощью сетевого анализатора zeek
+2. Добавьте пропущенные данные о структуре данных (назначении столбцов)
+3. Преобразуйте данные в столбцах в нужный формат,просмотрите общую структуру данных с помощью функции glimpse()
+4. Сколько участников информационного обмена всети Доброй Организации?
+5. Какое соотношение участников обмена внутрисети и участников обращений к внешним ресурсам?
+6. Найдите топ-10 участников сети, проявляющих наибольшую сетевую активность.
+7. Найдите топ-10 доменов, к которым обращаются пользователи сети и соответственное количество обращений
+8. Определите базовые статистические характеристики (функция summary() ) интервала времени между последовательными обращениями к топ-10 доменам.
+9. Часто вредоносное программное обеспечение использует DNS канал в качестве канала управления, периодически отправляя запросы на подконтрольный злоумышленникам DNS сервер. По периодическим запросам на один и тот же домен можно выявить скрытый DNS канал. Есть ли такие IP адреса в исследуемом датасете?
+10. Определите местоположение (страну, город) и организацию-провайдера для топ-10 доменов. Для этого можно использовать сторонние сервисы,например http://ip-api.com (API-эндпоинт –
+http://ip-api.com/json).
+
+### Шаг 1 - Подготовка данных
+
+Установим и подключим необходимые библиотеки
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+library(readr)
+```
+
+```{r}
+library(httr)
+```
+
+```{r}
+library(jsonlite)
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+library(knitr)
+```
+
+Импортируем данные DNS
+
+```{r}
+download.file("https://storage.yandexcloud.net/dataset.ctfsec/dns.zip", "dns.zip")
+
+```
+```{r}
+unzip("dns.zip")
+```
+
+```{r}
+dns_data <- read.table(
+  "dns.log",
+  header = FALSE,
+  sep = "\t",
+  comment.char = "#",
+  fill = TRUE
+)
+```
+
+Добавьте пропущенные данные о структуре данных (назначении столбцов)
+
+```{r}
+column_names <- c(
+  "timestamp", "uid", "source_ip", "source_port", "destination_ip", 
+  "destination_port", "protocol", "transaction_id", "query", "qclass", 
+  "qclass_name", "qtype", "qtype_name", "rcode", "rcode_name", 
+  "AA", "TC", "RD", "RA", "Z", "answers", "TTLS", "rejected"
+)
+
+colnames(dns_data) <- column_names
+dns_data <- as_tibble(dns_data)
+print(dns_data, n = 10)
+```
+
+
+Преобразуйте данные в столбцах в нужный формат
+
+```{r}
+
+dns_data_clean <- dns_data %>%
+  mutate(
+    timestamp = as.POSIXct(timestamp, origin = "1970-01-01"),
+    across(c(source_port, destination_port, transaction_id, qclass, qtype, rcode), as.numeric)
+  ) %>% 
+  filter(!is.na(source_ip) & !is.na(destination_ip))
+
+glimpse(dns_data_clean)
+```
+
+### Шаг 2 - Анализ данных
+
+Сколько участников информационного обмена в сети Доброй Организации?
+
+```{r}
+length(unique(c(dns_data_clean$source_ip, dns_data_clean$destination_ip)))
+```
+Какое соотношение участников обмена внутри сети и участников
+обращений к внешним ресурсам?
+``` {r}
+un_ip <- unique(c(dns_data_clean$source_ip, dns_data_clean$destination_ip))
+int_ip <- un_ip[grepl("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.)", un_ip)]
+ext_ip <- un_ip[!grepl("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.)", un_ip)]
+length(int_ip)/length(ext_ip)
+```
+Найдите топ-10 участников сети, проявляющих наибольшую сетевую
+активность.
+
+``` {r}
+dns_data_clean |> count(source_ip, sort = TRUE) |> head(10)
+```
+
+
+Найдите топ-10 доменов, к которым обращаются пользователи сети и
+соответственное количество обращений
+
+``` {r}
+dns_data_clean |> count(query, sort = TRUE) |> head(10)
+```
+
+Опеределите базовые статистические характеристики (функция summary()) интервала времени между последовательными обращениями к топ-10 доменам.
+
+``` {r}
+top_10_dom <- dns_data_clean |> count(query, sort = TRUE) |> head(10) |> pull(query)
+dns_data_clean |> filter(query %in% top_10_dom) |>
+     arrange(timestamp) |> group_by(query) |>
+     mutate(time = lead(timestamp) - timestamp) |>
+     filter(!is.na(time))|>
+     summarise(
+         min = min(time),
+         Q1 = quantile(time, 0.25),
+         median = median(time),
+         Q3 = quantile(time, 0.75),
+         max = max(time),
+         mean = mean(time)
+     )
+```
+
+Часто вредоносное программное обеспечение использует dns канал в
+качестве канала управления, периодически отправляя запросы на
+подконтрольный злоумышленникам DNS сервер. По периодическим запросам на
+один и тот же домен можно выявить скрытый DNS канал. Есть ли такие IP
+адреса в исследуемом датасете?
+
+
+``` {r}
+dns_data_clean |>
+  arrange(source_ip, query, timestamp) |>
+  group_by(source_ip, query) |>
+  mutate(time = as.numeric(lead(timestamp) - timestamp)) |>
+  filter(!is.na(time)) |>
+  summarise(requests = n() + 1,
+    avg_interval = mean(time)) |>
+  filter(requests >= 10, avg_interval <= 30) |>
+  group_by(source_ip) |>
+  summarise(
+    pd_domains = n(),
+    total_requests = sum(requests),
+  ) |>
+  arrange(desc(pd_domains))
+```
+
+
+
+Определите местоположение (страну, город) и организацию-провайдера
+для топ-10 доменов. Для этого можно использовать сторонние сервисы,
+например http://ip-api.com (API-эндпоинт – http://ip-api.com/json).
+
+```{r}
+###Задание 10: Определите местоположение (страну, город) и организацию-провайдера для топ-10 доменов.
+
+library(httr)
+library(jsonlite)
+
+# Получаем топ-10 доменов из dns_data_clean
+top_10_domains <- dns_data_clean %>%
+  count(query, sort = TRUE) %>%
+  head(10)
+
+# Функция для получения геоданных по домену
+get_domain_geo_info <- function(domain) {
+  # Пропускаем некорректные домены - возвращаем NA
+  if (grepl("[*\\\\\\x00]", domain) || domain == "-" || nchar(domain) < 3) {
+    return(tibble(
+      domain = domain,
+      country = NA_character_,
+      city = NA_character_,
+      isp = NA_character_,
+      org = NA_character_,
+      as = NA_character_
+    ))
+  }
+  
+  tryCatch({
+    # Делаем запрос к API по домену с дополнительными полями
+    url <- paste0("http://ip-api.com/json/", domain, "?fields=status,message,country,city,isp,org,as,query")
+    response <- GET(url, timeout(5))
+    
+    if (status_code(response) == 200) {
+      data <- fromJSON(content(response, "text"))
+      
+      if (data$status == "success") {
+        return(tibble(
+          domain = domain,
+          country = data$country,
+          city = data$city,
+          isp = data$isp,
+          org = data$org,
+          as = data$as
+        ))
+      } else {
+        return(tibble(
+          domain = domain,
+          country = NA_character_,
+          city = NA_character_,
+          isp = NA_character_,
+          org = NA_character_,
+          as = NA_character_
+        ))
+      }
+    } else {
+      return(tibble(
+        domain = domain,
+        country = NA_character_,
+        city = NA_character_,
+        isp = NA_character_,
+        org = NA_character_,
+        as = NA_character_
+      ))
+    }
+  }, error = function(e) {
+    return(tibble(
+      domain = domain,
+      country = NA_character_,
+      city = NA_character_,
+      isp = NA_character_,
+      org = NA_character_,
+      as = NA_character_
+    ))
+  })
+}
+
+# Получаем геоданные для каждого домена
+cat("Получение геоданных для топ-10 доменов...\n")
+
+geo_results <- map_dfr(top_10_domains$query, function(domain) {
+  cat("Обработка:", domain, "\n")
+  result <- get_domain_geo_info(domain)
+  # Пауза между запросами (1 секунда)
+  Sys.sleep(1)
+  return(result)
+})
+
+# Выводим результаты
+geo_results
+```
+
+### Шаг 3
+
+Отчёт написан и оформлен
+
+
+
+
