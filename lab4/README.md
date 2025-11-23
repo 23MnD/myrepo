@@ -368,7 +368,7 @@ top_10_domains <- dns_data_clean %>%
 
 
 get_domain_geo_info <- function(domain) {
-  # Пропускаем некорректные домены - возвращаем NA
+ 
   if (grepl("[*\\\\\\x00]", domain) || domain == "-" || nchar(domain) < 3) {
     return(tibble(
       domain = domain,
