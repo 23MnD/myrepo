@@ -1,5 +1,5 @@
 ---
-title: "Основы обработки данных с помощью R и Dplyr"
+title: "Практическая работа 004"
 author: "artem23mnd@yandex.ru"
 format: 
   md:

@@ -1,5 +1,5 @@
 ---
-title: "Практическая работа 002"
+title: "Практическая работа 2"
 author: "artem23mnd@yandex.ru"
 format: 
   md:
