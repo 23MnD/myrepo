@@ -1,0 +1,192 @@
+---
+title: "Практическая работа 6"
+author: "artem23mnd@yandex.ru"
+format: 
+  md:
+    output-file: README.md
+---
+## Цель работы
+
+1.  Закрепить навыки исследования данных журнала Windows Active
+    Directory
+2.  Изучить структуру журнала системы Windows Active Directory
+3.  Зекрепить практические навыки использования языка программирования R
+    для обработки данных
+4.  Закрепить знания основных функций обработки данных экосистемы
+    tidyverse языка R
+
+## Исходные данные
+
+1.  Программное обеспечение Windows 10
+2.  Rstudio Desktop
+3.  Интерпретатор языка R 4.5.1
+4.  Выгрузки данных журнала Windows Active Directory
+
+## Задание
+
+Используя программный пакет dplyr языка программирования R провести анализ журналов и ответить на вопросы.
+
+## Ход работы
+1.  Импортируйте данные в R. Это можно выполнить с помощью
+jsonlite::stream_in(file()) . Датасет находится по адресу
+https://storage.yandexcloud.net/iamcth-data/dataset.tar.gz.
+
+2. Привести датасеты в вид “аккуратных данных”, преобразовать типы столбцов в
+соответствии с типом данных
+
+3. Просмотрите общую структуру данных с помощью функции glimpse()
+
+5. Раскройте датафрейм избавившись от вложенных датафреймов. Для
+обнаружения таких можно использовать функцию dplyr::glimpse() , а для
+раскрытия вложенности – tidyr::unnestколонок – это можно предотвратить
+если использовать параметр tidyr::unn() . Обратите внимание, что при
+раскрытии теряются внешние названия est(..., names_sep = ) .
+
+6. Минимизируйте количество колонок в датафрейме – уберите колоки с
+единственным значением параметра.
+
+7. Какое количество хостов представлено в данном датасете?
+
+8. Подготовьте датафрейм с расшифровкой Windows Event_ID, приведите типы
+данных к типу их значений.
+
+9. Есть ли в логе события с высоким и средним уровнем значимости? Сколько их?
+
+10.  Оформить отчет в соответствии с шаблоном  
+
+### Шаг 1.
+
+#### Импортировать данные
+
+
+```{r}
+library(tidyverse)
+library(jsonlite)
+library(xml2)
+library(rvest)
+library(lubridate)
+library(dplyr)
+```
+
+
+```{r}
+url_data <- "https://storage.yandexcloud.net/iamcth-data/dataset.tar.gz"
+dest_file <- "dataset.tar.gz"
+download.file(url_data, destfile = dest_file, mode = "wb")
+```
+
+
+```{r}
+untar(dest_file)
+```
+
+
+```{r}
+son_file_name <- list.files(pattern = "\\.json$")[1]
+```
+
+
+```{r}
+raw_logs <- jsonlite::stream_in(file(son_file_name))
+```
+
+
+```{r}
+glimpse(raw_logs)
+```
+
+
+```{r}
+microsoft_url <- "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
+```
+
+
+```{r}
+event <- xml2::read_html(microsoft_url)
+```
+
+
+```{r}
+vent_df <- rvest::html_table(event)[[1]]
+```
+
+
+```{r}
+glimpse(vent_df)
+```
+
+
+```{r}
+logs_flat <- raw_logs %>%
+  unnest(
+    cols = c(`@metadata`, event, log, winlog, ecs, host, agent),
+    names_sep = "_"
+  ) %>%
+  unnest(
+    cols = everything(),
+    names_sep = "_"
+  )
+```
+
+
+```{r}
+logs_clean <- logs_flat %>%
+  mutate(
+    EventID = as.integer(winlog_event_id),
+    TimeCreated = as_datetime(`@timestamp`)
+  ) %>%
+  select(where(~!all(is.na(.)))) %>%
+  
+  select(where(~n_distinct(.) > 1))
+glimpse(logs_clean)
+```
+
+
+
+### Какое количество хостов представлено в данном датасете?
+
+```{r}
+n_distinct(logs_clean$winlog_computer_name)
+```
+
+###Подготовьте датафрейм с расшифровкой Windows Event_ID, приведите типы данных к типу их значений.
+
+```{r}
+vent_df_clean <- vent_df %>%
+  select(
+    EventID = `Current Windows Event ID`,
+    Criticality = `Potential Criticality`,
+    Summary = `Event Summary`
+  ) %>%
+  mutate(
+    EventID = as.integer(EventID) 
+  )
+
+glimpse(vent_df_clean)
+```
+
+### Есть ли в логе события с высоким и средним уровнем значимости? Сколько их?
+
+Посчитаем сколько событий High и Medium уровня значимсоти
+
+```{r}
+events_final <- logs_clean %>%
+  left_join(vent_df_clean, by = "EventID")
+
+events_final %>%
+  filter(Criticality %in% c("High", "Medium")) %>%
+  count(Criticality)
+```
+High и Medium уровня значимсоти у нас 0 событий, поэтому ради интереса посчитаем соклько у нас событий уровня Low
+
+```{r}
+events_final %>%
+  filter(Criticality == "Low") %>%
+  count(Criticality)
+```
+
+
+### Шаг 3
+
+Отчёт написан и оформлен
+
