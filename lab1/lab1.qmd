@@ -51,9 +51,6 @@ format:
     -   через интерфейс Rstudio IDE
     -   или функцией R install.packages(“swirl”)
 
-```{r}
-install.packages("swirl")
-```
 
 ``` {r}
 sessionInfo()

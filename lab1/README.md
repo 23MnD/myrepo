@@ -1,4 +1,4 @@
-# Введение в язык R
+# Практическая работа 001
 artem23mnd@yandex.ru
 
 ## Цель работы
@@ -12,9 +12,9 @@ artem23mnd@yandex.ru
 
 ## Исходные данные
 
-1.  Программное обеспечение Windows 10 Pro
+1.  Программное обеспечение Windows 10
 2.  Rstudio Desktop
-3.  Интерпретатор языка R 4.5.1
+3.  Интерпретатор языка R 4.5.2
 
 # Задание
 
@@ -41,27 +41,54 @@ artem23mnd@yandex.ru
     репозиторий
 
 ### Шаг 1
+
 1.  Установить интерпретатор R
 2.  Установить Rstudio IDE
 3.  Установить программный пакет swirl:
     -   через интерфейс Rstudio IDE
     -   или функцией R install.packages(“swirl”)
 
-
 ``` r
 sessionInfo()
 ```
-4.  Запустить задание с помощью swirl::swirl()   
-<!-- -->
+
+    R version 4.5.2 (2025-10-31 ucrt)
+    Platform: x86_64-w64-mingw32/x64
+    Running under: Windows 10 x64 (build 19045)
+
+    Matrix products: default
+      LAPACK version 3.12.1
+
+    locale:
+    [1] LC_COLLATE=English_American Samoa.utf8 
+    [2] LC_CTYPE=English_American Samoa.utf8   
+    [3] LC_MONETARY=English_American Samoa.utf8
+    [4] LC_NUMERIC=C                           
+    [5] LC_TIME=English_American Samoa.utf8    
+
+    time zone: Europe/Moscow
+    tzcode source: internal
+
+    attached base packages:
+    [1] stats     graphics  grDevices utils     datasets  methods   base     
+
+    loaded via a namespace (and not attached):
+     [1] compiler_4.5.2    fastmap_1.2.0     cli_3.6.5         tools_4.5.2      
+     [5] htmltools_0.5.8.1 rstudioapi_0.17.1 yaml_2.3.10       rmarkdown_2.30   
+     [9] knitr_1.50        jsonlite_2.0.0    xfun_0.54         digest_0.6.39    
+    [13] rlang_1.1.6       evaluate_1.0.5   
+
+1.  Запустить задание с помощью swirl::swirl() <!-- -->
 
     > swirl::swirl()
 
-    | Welcome to swirl! Please sign in. If you've been here before, use the same name as you did
-    | then. If you are new, call yourself something unique.
+    Welcome to swirl! Please sign in. If you’ve been here before, use
+    the same name as you did  
+    then. If you are new, call yourself something unique.
 
     What shall I call you? artem
 
-5.  Выбрать из меню курсов 1. R Programming: The basics of programming
+2.  Выбрать из меню курсов 1. R Programming: The basics of programming
     in R
 
 <!-- -->
@@ -74,7 +101,7 @@ sessionInfo()
 
     Выбор: 1
 
-6.  Запустить подкурсы и выполнить: базовые структурные блоки (Basic
+1.  Запустить подкурсы и выполнить: базовые структурные блоки (Basic
     Building Blocks) рабочие пространства и файлы (Workspace and Files)
     последовательности чисел (Sequences of Numbers) векторы (Vectors)
     пропущенные значения (Missing Values)
@@ -911,501 +938,495 @@ sessionInfo()
       |======================================================================================| 100%
 
 Векторы (Vectors)
-```
-  |                                                                                     |   0%
 
-| The simplest and most common data structure in R is the vector.
+      |                                                                                     |   0%
 
-...
+    | The simplest and most common data structure in R is the vector.
 
-  |==                                                                                   |   3%
-| Vectors come in two different flavors: atomic vectors and lists. An atomic vector contains
-| exactly one data type, whereas a list may contain multiple data types. We'll explore atomic
-| vectors further before we get to lists.
+    ...
 
-...
+      |==                                                                                   |   3%
+    | Vectors come in two different flavors: atomic vectors and lists. An atomic vector contains
+    | exactly one data type, whereas a list may contain multiple data types. We'll explore atomic
+    | vectors further before we get to lists.
 
-  |====                                                                                 |   5%
-| In previous lessons, we dealt entirely with numeric vectors, which are one type of atomic
-| vector. Other types of atomic vectors include logical, character, integer, and complex. In
-| this lesson, we'll take a closer look at logical and character vectors.
+    ...
 
-...
+      |====                                                                                 |   5%
+    | In previous lessons, we dealt entirely with numeric vectors, which are one type of atomic
+    | vector. Other types of atomic vectors include logical, character, integer, and complex. In
+    | this lesson, we'll take a closer look at logical and character vectors.
 
-  |=======                                                                              |   8%
-| Logical vectors can contain the values TRUE, FALSE, and NA (for 'not available'). These
-| values are generated as the result of logical 'conditions'. Let's experiment with some
-| simple conditions.
+    ...
 
-...
+      |=======                                                                              |   8%
+    | Logical vectors can contain the values TRUE, FALSE, and NA (for 'not available'). These
+    | values are generated as the result of logical 'conditions'. Let's experiment with some
+    | simple conditions.
 
-  |=========                                                                            |  11%
-| First, create a numeric vector num_vect that contains the values 0.5, 55, -10, and 6.
+    ...
 
-> num_vect <- c(0.5, 55, -10, 6)
+      |=========                                                                            |  11%
+    | First, create a numeric vector num_vect that contains the values 0.5, 55, -10, and 6.
 
-| You got it right!
+    > num_vect <- c(0.5, 55, -10, 6)
 
-  |===========                                                                          |  13%
-| Now, create a variable called tf that gets the result of num_vect < 1, which is read as
-| 'num_vect is less than 1'.
+    | You got it right!
 
-> tf <- num_vect < 1
+      |===========                                                                          |  13%
+    | Now, create a variable called tf that gets the result of num_vect < 1, which is read as
+    | 'num_vect is less than 1'.
 
-| You nailed it! Good job!
+    > tf <- num_vect < 1
 
-  |=============                                                                        |  16%
-| What do you think tf will look like?
+    | You nailed it! Good job!
 
-1: a vector of 4 logical values
-2: a single logical value
+      |=============                                                                        |  16%
+    | What do you think tf will look like?
 
-Выбор: 1
+    1: a vector of 4 logical values
+    2: a single logical value
 
-| All that practice is paying off!
+    Выбор: 1
 
-  |================                                                                     |  18%
-| Print the contents of tf now.
+    | All that practice is paying off!
 
-> tf
-[1]  TRUE FALSE  TRUE FALSE
+      |================                                                                     |  18%
+    | Print the contents of tf now.
 
-| You nailed it! Good job!
+    > tf
+    [1]  TRUE FALSE  TRUE FALSE
 
-  |==================                                                                   |  21%
-| The statement num_vect < 1 is a condition and tf tells us whether each corresponding element
-| of our numeric vector num_vect satisfies this condition.
+    | You nailed it! Good job!
 
-...
+      |==================                                                                   |  21%
+    | The statement num_vect < 1 is a condition and tf tells us whether each corresponding element
+    | of our numeric vector num_vect satisfies this condition.
 
-  |====================                                                                 |  24%
-| The first element of num_vect is 0.5, which is less than 1 and therefore the statement 0.5 <
-| 1 is TRUE. The second element of num_vect is 55, which is greater than 1, so the statement
-| 55 < 1 is FALSE. The same logic applies for the third and fourth elements.
+    ...
 
-...
+      |====================                                                                 |  24%
+    | The first element of num_vect is 0.5, which is less than 1 and therefore the statement 0.5 <
+    | 1 is TRUE. The second element of num_vect is 55, which is greater than 1, so the statement
+    | 55 < 1 is FALSE. The same logic applies for the third and fourth elements.
 
-  |======================                                                               |  26%
-| Let's try another. Type num_vect >= 6 without assigning the result to a new variable.
+    ...
 
-> num_vect >= 6
-[1] FALSE  TRUE FALSE  TRUE
+      |======================                                                               |  26%
+    | Let's try another. Type num_vect >= 6 without assigning the result to a new variable.
 
-| Your dedication is inspiring!
+    > num_vect >= 6
+    [1] FALSE  TRUE FALSE  TRUE
 
-  |=========================                                                            |  29%
-| This time, we are asking whether each individual element of num_vect is greater than OR
-| equal to 6. Since only 55 and 6 are greater than or equal to 6, the second and fourth
-| elements of the result are TRUE and the first and third elements are FALSE.
+    | Your dedication is inspiring!
 
-...
+      |=========================                                                            |  29%
+    | This time, we are asking whether each individual element of num_vect is greater than OR
+    | equal to 6. Since only 55 and 6 are greater than or equal to 6, the second and fourth
+    | elements of the result are TRUE and the first and third elements are FALSE.
 
-  |===========================                                                          |  32%
-| The `<` and `>=` symbols in these examples are called 'logical operators'. Other logical
-| operators include `>`, `<=`, `==` for exact equality, and `!=` for inequality.
+    ...
 
-...
+      |===========================                                                          |  32%
+    | The `<` and `>=` symbols in these examples are called 'logical operators'. Other logical
+    | operators include `>`, `<=`, `==` for exact equality, and `!=` for inequality.
 
-  |=============================                                                        |  34%
-| If we have two logical expressions, A and B, we can ask whether at least one is TRUE with A
-| | B (logical 'or' a.k.a. 'union') or whether they are both TRUE with A & B (logical 'and'
-| a.k.a. 'intersection'). Lastly, !A is the negation of A and is TRUE when A is FALSE and vice
-| versa.
+    ...
 
-...
+      |=============================                                                        |  34%
+    | If we have two logical expressions, A and B, we can ask whether at least one is TRUE with A
+    | | B (logical 'or' a.k.a. 'union') or whether they are both TRUE with A & B (logical 'and'
+    | a.k.a. 'intersection'). Lastly, !A is the negation of A and is TRUE when A is FALSE and vice
+    | versa.
 
-  |===============================                                                      |  37%
-| It's a good idea to spend some time playing around with various combinations of these
-| logical operators until you get comfortable with their use. We'll do a few examples here to
-| get you started.
+    ...
 
-...
+      |===============================                                                      |  37%
+    | It's a good idea to spend some time playing around with various combinations of these
+    | logical operators until you get comfortable with their use. We'll do a few examples here to
+    | get you started.
 
-  |==================================                                                   |  39%
-| Try your best to predict the result of each of the following statements. You can use pencil
-| and paper to work them out if it's helpful. If you get stuck, just guess and you've got a
-| 50% chance of getting the right answer!
+    ...
 
-...
+      |==================================                                                   |  39%
+    | Try your best to predict the result of each of the following statements. You can use pencil
+    | and paper to work them out if it's helpful. If you get stuck, just guess and you've got a
+    | 50% chance of getting the right answer!
 
-  |====================================                                                 |  42%
-| (3 > 5) & (4 == 4)
+    ...
 
-1: TRUE
-2: FALSE
+      |====================================                                                 |  42%
+    | (3 > 5) & (4 == 4)
 
-Выбор: 2
+    1: TRUE
+    2: FALSE
 
-| Perseverance, that's the answer.
+    Выбор: 2
 
-  |======================================                                               |  45%
-| (TRUE == TRUE) | (TRUE == FALSE)
+    | Perseverance, that's the answer.
 
-1: TRUE
-2: FALSE
+      |======================================                                               |  45%
+    | (TRUE == TRUE) | (TRUE == FALSE)
 
-Выбор: 1
+    1: TRUE
+    2: FALSE
 
-| Keep up the great work!
+    Выбор: 1
 
-  |========================================                                             |  47%
-| ((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)
+    | Keep up the great work!
 
-1: FALSE
-2: TRUE
+      |========================================                                             |  47%
+    | ((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)
 
-Выбор: 2
+    1: FALSE
+    2: TRUE
 
-| Keep working like that and you'll get there!
+    Выбор: 2
 
-  |==========================================                                           |  50%
-| Don't worry if you found these to be tricky. They're supposed to be. Working with logical
-| statements in R takes practice, but your efforts will be rewarded in future lessons (e.g.
-| subsetting and control structures).
+    | Keep working like that and you'll get there!
 
-...
+      |==========================================                                           |  50%
+    | Don't worry if you found these to be tricky. They're supposed to be. Working with logical
+    | statements in R takes practice, but your efforts will be rewarded in future lessons (e.g.
+    | subsetting and control structures).
 
-  |=============================================                                        |  53%
-| Character vectors are also very common in R. Double quotes are used to distinguish character
-| objects, as in the following example.
+    ...
 
-...
+      |=============================================                                        |  53%
+    | Character vectors are also very common in R. Double quotes are used to distinguish character
+    | objects, as in the following example.
 
-  |===============================================                                      |  55%
-| Create a character vector that contains the following words: "My", "name", "is". Remember to
-| enclose each word in its own set of double quotes, so that R knows they are character
-| strings. Store the vector in a variable called my_char.
+    ...
 
-> my_char <- c("My", "name", "is")
+      |===============================================                                      |  55%
+    | Create a character vector that contains the following words: "My", "name", "is". Remember to
+    | enclose each word in its own set of double quotes, so that R knows they are character
+    | strings. Store the vector in a variable called my_char.
 
-| Nice work!
+    > my_char <- c("My", "name", "is")
 
-  |=================================================                                    |  58%
-| Print the contents of my_char to see what it looks like.
+    | Nice work!
 
-> my_char
-[1] "My"   "name" "is"  
+      |=================================================                                    |  58%
+    | Print the contents of my_char to see what it looks like.
 
-| That's the answer I was looking for.
+    > my_char
+    [1] "My"   "name" "is"  
 
-  |===================================================                                  |  61%
-| Right now, my_char is a character vector of length 3. Let's say we want to join the elements
-| of my_char together into one continuous character string (i.e. a character vector of length
-| 1). We can do this using the paste() function.
+    | That's the answer I was looking for.
 
-...
+      |===================================================                                  |  61%
+    | Right now, my_char is a character vector of length 3. Let's say we want to join the elements
+    | of my_char together into one continuous character string (i.e. a character vector of length
+    | 1). We can do this using the paste() function.
 
-  |======================================================                               |  63%
-| Type paste(my_char, collapse = " ") now. Make sure there's a space between the double quotes
-| in the `collapse` argument. You'll see why in a second.
+    ...
 
-> paste(my_char, collapse = " ")
-[1] "My name is"
+      |======================================================                               |  63%
+    | Type paste(my_char, collapse = " ") now. Make sure there's a space between the double quotes
+    | in the `collapse` argument. You'll see why in a second.
 
-| You are really on a roll!
+    > paste(my_char, collapse = " ")
+    [1] "My name is"
 
-  |========================================================                             |  66%
-| The `collapse` argument to the paste() function tells R that when we join together the
-| elements of the my_char character vector, we'd like to separate them with single spaces.
+    | You are really on a roll!
 
-...
+      |========================================================                             |  66%
+    | The `collapse` argument to the paste() function tells R that when we join together the
+    | elements of the my_char character vector, we'd like to separate them with single spaces.
 
-  |==========================================================                           |  68%
-| It seems that we're missing something.... Ah, yes! Your name!
+    ...
 
-...
+      |==========================================================                           |  68%
+    | It seems that we're missing something.... Ah, yes! Your name!
 
-  |============================================================                         |  71%
-| To add (or 'concatenate') your name to the end of my_char, use the c() function like this:
-| c(my_char, "your_name_here"). Place your name in double quotes where I've put
-| "your_name_here". Try it now, storing the result in a new variable called my_name.
+    ...
 
-> c(my_char, "Artem")
-[1] "My"    "name"  "is"    "Artem"
+      |============================================================                         |  71%
+    | To add (or 'concatenate') your name to the end of my_char, use the c() function like this:
+    | c(my_char, "your_name_here"). Place your name in double quotes where I've put
+    | "your_name_here". Try it now, storing the result in a new variable called my_name.
 
-| Try again. Getting it right on the first try is boring anyway! Or, type info() for more
-| options.
+    > c(my_char, "Artem")
+    [1] "My"    "name"  "is"    "Artem"
 
-| Tack your name on to the end of the my_char vector using the c() function.  Be sure to
-| assign the result to a new variable called my_name. If your name was "Swirl", you would type
-| my_name <- c(my_char, "Swirl").
+    | Try again. Getting it right on the first try is boring anyway! Or, type info() for more
+    | options.
 
-> my_name <- c(my_char, "Artem")
+    | Tack your name on to the end of the my_char vector using the c() function.  Be sure to
+    | assign the result to a new variable called my_name. If your name was "Swirl", you would type
+    | my_name <- c(my_char, "Swirl").
 
-| You're the best!
+    > my_name <- c(my_char, "Artem")
 
-  |===============================================================                      |  74%
-| Take a look at the contents of my_name.
+    | You're the best!
 
-> my_name
-[1] "My"    "name"  "is"    "Artem"
+      |===============================================================                      |  74%
+    | Take a look at the contents of my_name.
 
-| You're the best!
+    > my_name
+    [1] "My"    "name"  "is"    "Artem"
 
-  |=================================================================                    |  76%
-| Now, use the paste() function once more to join the words in my_name together into a single
-| character string. Don't forget to say collapse = " "!
+    | You're the best!
 
-> paste(my_name, collapse = " ")
-[1] "My name is Artem"
+      |=================================================================                    |  76%
+    | Now, use the paste() function once more to join the words in my_name together into a single
+    | character string. Don't forget to say collapse = " "!
 
-| Excellent job!
+    > paste(my_name, collapse = " ")
+    [1] "My name is Artem"
 
-  |===================================================================                  |  79%
-| In this example, we used the paste() function to collapse the elements of a single character
-| vector. paste() can also be used to join the elements of multiple character vectors.
+    | Excellent job!
 
-...
+      |===================================================================                  |  79%
+    | In this example, we used the paste() function to collapse the elements of a single character
+    | vector. paste() can also be used to join the elements of multiple character vectors.
 
-  |=====================================================================                |  82%
-| In the simplest case, we can join two character vectors that are each of length 1 (i.e. join
-| two words). Try paste("Hello", "world!", sep = " "), where the `sep` argument tells R that
-| we want to separate the joined elements with a single space.
+    ...
 
-> paste("Hello", "world!", sep = " ")
-[1] "Hello world!"
+      |=====================================================================                |  82%
+    | In the simplest case, we can join two character vectors that are each of length 1 (i.e. join
+    | two words). Try paste("Hello", "world!", sep = " "), where the `sep` argument tells R that
+    | we want to separate the joined elements with a single space.
 
-| You're the best!
+    > paste("Hello", "world!", sep = " ")
+    [1] "Hello world!"
 
-  |========================================================================             |  84%
-| For a slightly more complicated example, we can join two vectors, each of length 3. Use
-| paste() to join the integer vector 1:3 with the character vector c("X", "Y", "Z"). This
-| time, use sep = "" to leave no space between the joined elements.
+    | You're the best!
 
-> paste(1:3, c("X", "Y", "Z"), sep = "")
-[1] "1X" "2Y" "3Z"
+      |========================================================================             |  84%
+    | For a slightly more complicated example, we can join two vectors, each of length 3. Use
+    | paste() to join the integer vector 1:3 with the character vector c("X", "Y", "Z"). This
+    | time, use sep = "" to leave no space between the joined elements.
 
-| You are quite good my friend!
+    > paste(1:3, c("X", "Y", "Z"), sep = "")
+    [1] "1X" "2Y" "3Z"
 
-  |==========================================================================           |  87%
-| What do you think will happen if our vectors are of different length? (Hint: we talked about
-| this in a previous lesson.)
+    | You are quite good my friend!
 
-...
+      |==========================================================================           |  87%
+    | What do you think will happen if our vectors are of different length? (Hint: we talked about
+    | this in a previous lesson.)
 
-  |============================================================================         |  89%
-| Vector recycling! Try paste(LETTERS, 1:4, sep = "-"), where LETTERS is a predefined variable
-| in R containing a character vector of all 26 letters in the English alphabet.
+    ...
 
-> paste(LETTERS, 1:4, sep = "-")
- [1] "A-1" "B-2" "C-3" "D-4" "E-1" "F-2" "G-3" "H-4" "I-1" "J-2" "K-3" "L-4" "M-1" "N-2" "O-3"
-[16] "P-4" "Q-1" "R-2" "S-3" "T-4" "U-1" "V-2" "W-3" "X-4" "Y-1" "Z-2"
+      |============================================================================         |  89%
+    | Vector recycling! Try paste(LETTERS, 1:4, sep = "-"), where LETTERS is a predefined variable
+    | in R containing a character vector of all 26 letters in the English alphabet.
 
-| Perseverance, that's the answer.
+    > paste(LETTERS, 1:4, sep = "-")
+     [1] "A-1" "B-2" "C-3" "D-4" "E-1" "F-2" "G-3" "H-4" "I-1" "J-2" "K-3" "L-4" "M-1" "N-2" "O-3"
+    [16] "P-4" "Q-1" "R-2" "S-3" "T-4" "U-1" "V-2" "W-3" "X-4" "Y-1" "Z-2"
 
-  |==============================================================================       |  92%
-| Since the character vector LETTERS is longer than the numeric vector 1:4, R simply recycles,
-| or repeats, 1:4 until it matches the length of LETTERS.
+    | Perseverance, that's the answer.
 
-...
+      |==============================================================================       |  92%
+    | Since the character vector LETTERS is longer than the numeric vector 1:4, R simply recycles,
+    | or repeats, 1:4 until it matches the length of LETTERS.
 
-  |=================================================================================    |  95%
-| Also worth noting is that the numeric vector 1:4 gets 'coerced' into a character vector by
-| the paste() function.
+    ...
 
-...
+      |=================================================================================    |  95%
+    | Also worth noting is that the numeric vector 1:4 gets 'coerced' into a character vector by
+    | the paste() function.
 
-  |===================================================================================  |  97%
-| We'll discuss coercion in another lesson, but all it really means is that the numbers 1, 2,
-| 3, and 4 in the output above are no longer numbers to R, but rather characters "1", "2",
-| "3", and "4".
+    ...
 
-...
+      |===================================================================================  |  97%
+    | We'll discuss coercion in another lesson, but all it really means is that the numbers 1, 2,
+    | 3, and 4 in the output above are no longer numbers to R, but rather characters "1", "2",
+    | "3", and "4".
 
-  |=====================================================================================| 100%
-```
+    ...
+
+      |=====================================================================================| 100%
 
 пропущенные значения (Missing Values)
-```
- |                                                                                     |   0%
 
-| Missing values play an important role in statistics and data analysis. Often, missing values
-| must not be ignored, but rather they should be carefully studied to see if there's an
-| underlying pattern or cause for their missingness.
+     |                                                                                     |   0%
 
-...
+    | Missing values play an important role in statistics and data analysis. Often, missing values
+    | must not be ignored, but rather they should be carefully studied to see if there's an
+    | underlying pattern or cause for their missingness.
 
-  |====                                                                                 |   5%
-| In R, NA is used to represent any value that is 'not available' or 'missing' (in the
-| statistical sense). In this lesson, we'll explore missing values further.
+    ...
 
-...
+      |====                                                                                 |   5%
+    | In R, NA is used to represent any value that is 'not available' or 'missing' (in the
+    | statistical sense). In this lesson, we'll explore missing values further.
 
-  |========                                                                             |  10%
-| Any operation involving NA generally yields NA as the result. To illustrate, let's create a
-| vector c(44, NA, 5, NA) and assign it to a variable x.
+    ...
 
-> x <- c(44, NA, 5, NA)
+      |========                                                                             |  10%
+    | Any operation involving NA generally yields NA as the result. To illustrate, let's create a
+    | vector c(44, NA, 5, NA) and assign it to a variable x.
 
-| All that hard work is paying off!
+    > x <- c(44, NA, 5, NA)
 
-  |=============                                                                        |  15%
-| Now, let's multiply x by 3.
+    | All that hard work is paying off!
 
-> x*3
-[1] 132  NA  15  NA
+      |=============                                                                        |  15%
+    | Now, let's multiply x by 3.
 
-| Your dedication is inspiring!
+    > x*3
+    [1] 132  NA  15  NA
 
-  |=================                                                                    |  20%
-| Notice that the elements of the resulting vector that correspond with the NA values in x are
-| also NA.
+    | Your dedication is inspiring!
 
-...
+      |=================                                                                    |  20%
+    | Notice that the elements of the resulting vector that correspond with the NA values in x are
+    | also NA.
 
-  |=====================                                                                |  25%
-| To make things a little more interesting, lets create a vector containing 1000 draws from a
-| standard normal distribution with y <- rnorm(1000).
+    ...
 
-> y <- rnorm(1000)
+      |=====================                                                                |  25%
+    | To make things a little more interesting, lets create a vector containing 1000 draws from a
+    | standard normal distribution with y <- rnorm(1000).
 
-| That's the answer I was looking for.
+    > y <- rnorm(1000)
 
-  |==========================                                                           |  30%
-| Next, let's create a vector containing 1000 NAs with z <- rep(NA, 1000).
+    | That's the answer I was looking for.
 
-> z <- rep(NA, 1000)
+      |==========================                                                           |  30%
+    | Next, let's create a vector containing 1000 NAs with z <- rep(NA, 1000).
 
-| All that hard work is paying off!
+    > z <- rep(NA, 1000)
 
-  |==============================                                                       |  35%
-| Finally, let's select 100 elements at random from these 2000 values (combining y and z) such
-| that we don't know how many NAs we'll wind up with or what positions they'll occupy in our
-| final vector -- my_data <- sample(c(y, z), 100).
+    | All that hard work is paying off!
 
-> my_data <- sample(c(y, z), 100)
+      |==============================                                                       |  35%
+    | Finally, let's select 100 elements at random from these 2000 values (combining y and z) such
+    | that we don't know how many NAs we'll wind up with or what positions they'll occupy in our
+    | final vector -- my_data <- sample(c(y, z), 100).
 
-| You got it!
+    > my_data <- sample(c(y, z), 100)
 
-  |==================================                                                   |  40%
-| Let's first ask the question of where our NAs are located in our data. The is.na() function
-| tells us whether each element of a vector is NA. Call is.na() on my_data and assign the
-| result to my_na.
+    | You got it!
 
-> my_na <- is.na(my_data)
+      |==================================                                                   |  40%
+    | Let's first ask the question of where our NAs are located in our data. The is.na() function
+    | tells us whether each element of a vector is NA. Call is.na() on my_data and assign the
+    | result to my_na.
 
-| Excellent work!
+    > my_na <- is.na(my_data)
 
-  |======================================                                               |  45%
-| Now, print my_na to see what you came up with.
+    | Excellent work!
 
-> my_na
-  [1]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
- [16]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
- [31] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
- [46] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
- [61] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
- [76] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
- [91]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
+      |======================================                                               |  45%
+    | Now, print my_na to see what you came up with.
 
-| Great job!
+    > my_na
+      [1]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+     [16]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+     [31] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+     [46] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+     [61] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+     [76] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
+     [91]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
 
-  |==========================================                                           |  50%
-| Everywhere you see a TRUE, you know the corresponding element of my_data is NA. Likewise,
-| everywhere you see a FALSE, you know the corresponding element of my_data is one of our
-| random draws from the standard normal distribution.
+    | Great job!
 
-...
+      |==========================================                                           |  50%
+    | Everywhere you see a TRUE, you know the corresponding element of my_data is NA. Likewise,
+    | everywhere you see a FALSE, you know the corresponding element of my_data is one of our
+    | random draws from the standard normal distribution.
 
-  |===============================================                                      |  55%
-| In our previous discussion of logical operators, we introduced the `==` operator as a method
-| of testing for equality between two objects. So, you might think the expression my_data ==
-| NA yields the same results as is.na(). Give it a try.
+    ...
 
-> my_data == NA
-  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
- [31] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
- [61] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
- [91] NA NA NA NA NA NA NA NA NA NA
+      |===============================================                                      |  55%
+    | In our previous discussion of logical operators, we introduced the `==` operator as a method
+    | of testing for equality between two objects. So, you might think the expression my_data ==
+    | NA yields the same results as is.na(). Give it a try.
 
-| You are amazing!
+    > my_data == NA
+      [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+     [31] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+     [61] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+     [91] NA NA NA NA NA NA NA NA NA NA
 
-  |===================================================                                  |  60%
-| The reason you got a vector of all NAs is that NA is not really a value, but just a
-| placeholder for a quantity that is not available. Therefore the logical expression is
-| incomplete and R has no choice but to return a vector of the same length as my_data that
-| contains all NAs.
+    | You are amazing!
 
-...
+      |===================================================                                  |  60%
+    | The reason you got a vector of all NAs is that NA is not really a value, but just a
+    | placeholder for a quantity that is not available. Therefore the logical expression is
+    | incomplete and R has no choice but to return a vector of the same length as my_data that
+    | contains all NAs.
 
-  |=======================================================                              |  65%
-| Don't worry if that's a little confusing. The key takeaway is to be cautious when using
-| logical expressions anytime NAs might creep in, since a single NA value can derail the
-| entire thing.
+    ...
 
-...
+      |=======================================================                              |  65%
+    | Don't worry if that's a little confusing. The key takeaway is to be cautious when using
+    | logical expressions anytime NAs might creep in, since a single NA value can derail the
+    | entire thing.
 
-  |============================================================                         |  70%
-| So, back to the task at hand. Now that we have a vector, my_na, that has a TRUE for every NA
-| and FALSE for every numeric value, we can compute the total number of NAs in our data.
+    ...
 
-...
+      |============================================================                         |  70%
+    | So, back to the task at hand. Now that we have a vector, my_na, that has a TRUE for every NA
+    | and FALSE for every numeric value, we can compute the total number of NAs in our data.
 
-  |================================================================                     |  75%
-| The trick is to recognize that underneath the surface, R represents TRUE as the number 1 and
-| FALSE as the number 0. Therefore, if we take the sum of a bunch of TRUEs and FALSEs, we get
-| the total number of TRUEs.
+    ...
 
-...
+      |================================================================                     |  75%
+    | The trick is to recognize that underneath the surface, R represents TRUE as the number 1 and
+    | FALSE as the number 0. Therefore, if we take the sum of a bunch of TRUEs and FALSEs, we get
+    | the total number of TRUEs.
 
-  |====================================================================                 |  80%
-| Let's give that a try here. Call the sum() function on my_na to count the total number of
-| TRUEs in my_na, and thus the total number of NAs in my_data. Don't assign the result to a
-| new variable.
+    ...
 
-> sum(my_na)
-[1] 41
+      |====================================================================                 |  80%
+    | Let's give that a try here. Call the sum() function on my_na to count the total number of
+    | TRUEs in my_na, and thus the total number of NAs in my_data. Don't assign the result to a
+    | new variable.
 
-| Great job!
+    > sum(my_na)
+    [1] 41
 
-  |========================================================================             |  85%
-| Pretty cool, huh? Finally, let's take a look at the data to convince ourselves that
-| everything 'adds up'. Print my_data to the console.
+    | Great job!
 
-> my_data
-  [1]          NA  1.56184151  0.86704192          NA  0.76073478          NA -0.33349992
-  [8]          NA          NA  0.47748883  1.96874230 -0.89220801 -0.27901964  1.19896464
- [15]  0.85973322          NA  0.13101209 -1.35366493          NA -0.43868816 -0.26194284
- [22] -0.19963114  1.23578612  0.09645921 -0.16007871  0.07109486          NA          NA
- [29]          NA          NA -0.59513995  1.99567272 -2.19286823          NA          NA
- [36]          NA          NA -1.13331442          NA -0.36260798  1.47156177 -0.69922073
- [43]  1.25706011  0.75629989  0.48673942  0.03318861          NA -0.69369444  0.15908190
- [50]          NA -0.71632668  0.29439244  0.82989086 -2.13300573 -0.83152685          NA
- [57]          NA          NA          NA -0.04486088 -2.46222910  0.14803467 -0.91736565
- [64]          NA          NA  1.31746651 -1.59591399          NA  0.99954947          NA
- [71]          NA          NA  0.01622313 -2.77712608  0.55210275  0.08854207 -2.01141539
- [78]          NA          NA          NA          NA  0.79623045  0.85282844          NA
- [85]          NA -0.26496458 -1.51821853          NA          NA          NA          NA
- [92]  0.86280247          NA  0.13649824 -1.55357564  1.50593996          NA          NA
- [99] -0.27891067 -1.00117899
+      |========================================================================             |  85%
+    | Pretty cool, huh? Finally, let's take a look at the data to convince ourselves that
+    | everything 'adds up'. Print my_data to the console.
 
-| Your dedication is inspiring!
+    > my_data
+      [1]          NA  1.56184151  0.86704192          NA  0.76073478          NA -0.33349992
+      [8]          NA          NA  0.47748883  1.96874230 -0.89220801 -0.27901964  1.19896464
+     [15]  0.85973322          NA  0.13101209 -1.35366493          NA -0.43868816 -0.26194284
+     [22] -0.19963114  1.23578612  0.09645921 -0.16007871  0.07109486          NA          NA
+     [29]          NA          NA -0.59513995  1.99567272 -2.19286823          NA          NA
+     [36]          NA          NA -1.13331442          NA -0.36260798  1.47156177 -0.69922073
+     [43]  1.25706011  0.75629989  0.48673942  0.03318861          NA -0.69369444  0.15908190
+     [50]          NA -0.71632668  0.29439244  0.82989086 -2.13300573 -0.83152685          NA
+     [57]          NA          NA          NA -0.04486088 -2.46222910  0.14803467 -0.91736565
+     [64]          NA          NA  1.31746651 -1.59591399          NA  0.99954947          NA
+     [71]          NA          NA  0.01622313 -2.77712608  0.55210275  0.08854207 -2.01141539
+     [78]          NA          NA          NA          NA  0.79623045  0.85282844          NA
+     [85]          NA -0.26496458 -1.51821853          NA          NA          NA          NA
+     [92]  0.86280247          NA  0.13649824 -1.55357564  1.50593996          NA          NA
+     [99] -0.27891067 -1.00117899
 
-  |============================================================================         |  90%
-| Now that we've got NAs down pat, let's look at a second type of missing value -- NaN, which
-| stands for 'not a number'. To generate NaN, try dividing (using a forward slash) 0 by 0 now.
+    | Your dedication is inspiring!
 
-> 0 / 0
-[1] NaN
+      |============================================================================         |  90%
+    | Now that we've got NAs down pat, let's look at a second type of missing value -- NaN, which
+    | stands for 'not a number'. To generate NaN, try dividing (using a forward slash) 0 by 0 now.
 
-| You are really on a roll!
+    > 0 / 0
+    [1] NaN
 
-  |=================================================================================    |  95%
-| Let's do one more, just for fun. In R, Inf stands for infinity. What happens if you subtract
-| Inf from Inf?
+    | You are really on a roll!
 
-> Inf - Inf
-[1] NaN
+      |=================================================================================    |  95%
+    | Let's do one more, just for fun. In R, Inf stands for infinity. What happens if you subtract
+    | Inf from Inf?
 
-| Nice work!
+    > Inf - Inf
+    [1] NaN
 
-  |=====================================================================================| 100%
-```
+    | Nice work!
 
-## Оценка результата
+      |=====================================================================================| 100%
 
-В результате лабораторной работы мы развили навыки использования языка программирования R, 
-развили навыки работы в Rstudio IDE и закрепили знания базовых типов данных языка R и простейших операций с ними.
-## Вывод
-В результате лабораторной работы мы познакомились с основами языка R.
+### Шаг 2
 
+Отчёт написан и оформлен

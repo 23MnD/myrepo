@@ -1,4 +1,4 @@
-# Основы обработки данных с помощью R и Dplyr
+# Практическая работа 004
 artem23mnd@yandex.ru
 
 ## Цель работы
@@ -11,9 +11,9 @@ artem23mnd@yandex.ru
 
 ## Исходные данные
 
-1.  Операционная система Windows
+1.  Операционная система Windows 10
 2.  Rstudio Desktop
-3.  Интерпретатор языка R 4.5.1
+3.  Интерпретатор языка R 4.5.2
 
 ## Задание
 
@@ -356,8 +356,6 @@ dns_data_clean |>
 http://ip-api.com (API-эндпоинт – http://ip-api.com/json).
 
 ``` r
-
-
 library(httr)
 library(jsonlite)
 
@@ -368,7 +366,7 @@ top_10_domains <- dns_data_clean %>%
 
 
 get_domain_geo_info <- function(domain) {
- 
+  
   if (grepl("[*\\\\\\x00]", domain) || domain == "-" || nchar(domain) < 3) {
     return(tibble(
       domain = domain,
@@ -381,7 +379,7 @@ get_domain_geo_info <- function(domain) {
   }
   
   tryCatch({
- 
+   
     url <- paste0("http://ip-api.com/json/", domain, "?fields=status,message,country,city,isp,org,as,query")
     response <- GET(url, timeout(5))
     
@@ -433,6 +431,8 @@ get_domain_geo_info <- function(domain) {
 cat("Получение геоданных для топ-10 доменов...\n")
 ```
 
+    Получение геоданных для топ-10 доменов...
+
 ``` r
 geo_results <- map_dfr(top_10_domains$query, function(domain) {
   cat("Обработка:", domain, "\n")
@@ -455,7 +455,6 @@ geo_results <- map_dfr(top_10_domains$query, function(domain) {
     Обработка: WPAD 
 
 ``` r
-
 geo_results
 ```
 
@@ -464,15 +463,15 @@ geo_results
        <chr>                                         <chr>   <chr> <chr> <chr> <chr>
      1 "teredo.ipv6.microsoft.com"                   <NA>    <NA>  <NA>  <NA>  <NA> 
      2 "tools.google.com"                            United… Moun… Goog… Goog… AS15…
-     3 "time.apple.com"                              United… New … Appl… Appl… AS71…
-     4 "safebrowsing.clients.google.com"             United… Moun… Goog… Goog… AS15…
-     5 "www.apple.com"                               United… Ashb… Akam… Akam… AS16…
+     3 "time.apple.com"                              United… Sant… Appl… Appl… AS61…
+     4 "safebrowsing.clients.google.com"             United… Wash… Goog… Goog… AS15…
+     5 "www.apple.com"                               United… Ashb… Akam… Akam… AS20…
      6 "*\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\… <NA>    <NA>  <NA>  <NA>  <NA> 
      7 "44.206.168.192.in-addr.arpa"                 <NA>    <NA>  <NA>  <NA>  <NA> 
-     8 "imap.gmail.com"                              United… Moun… Goog… Goog… AS15…
-     9 "stats.norton.com"                            United… Boyd… Micr… Micr… AS80…
+     8 "imap.gmail.com"                              United… Las … Goog… Goog… AS15…
+     9 "stats.norton.com"                            <NA>    <NA>  <NA>  <NA>  <NA> 
     10 "WPAD"                                        <NA>    <NA>  <NA>  <NA>  <NA> 
 
-### Шаг 3
+### Шаг 2
 
 Отчёт написан и оформлен

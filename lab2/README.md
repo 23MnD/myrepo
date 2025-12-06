@@ -12,9 +12,9 @@ artem23mnd@yandex.ru
 
 ## Исходные данные
 
-1.  Программное обеспечение Windows OS
+1.  Программное обеспечение Windows 10
 2.  Rstudio Desktop
-3.  Интерпретатор языка R 4.5.1
+3.  Интерпретатор языка R 4.5.2
 
 ## Задание
 
@@ -51,16 +51,14 @@ artem23mnd@yandex.ru
 library(dplyr)
 ```
 
-    Warning: пакет 'dplyr' был собран под R версии 4.6.0
 
+    Attaching package: 'dplyr'
 
-    Присоединяю пакет: 'dplyr'
-
-    Следующие объекты скрыты от 'package:stats':
+    The following objects are masked from 'package:stats':
 
         filter, lag
 
-    Следующие объекты скрыты от 'package:base':
+    The following objects are masked from 'package:base':
 
         intersect, setdiff, setequal, union
 
