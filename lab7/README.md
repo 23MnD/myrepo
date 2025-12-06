@@ -15,7 +15,6 @@ artem23mnd@yandex.ru
 1.  Программное обеспечение Windows 10
 2.  Rstudio Desktop
 3.  Интерпретатор языка R 4.5.2
-4.  Выгрузки данных журнала Windows Active Directory
 
 ## Задание
 
