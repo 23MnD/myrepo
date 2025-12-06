@@ -1,5 +1,5 @@
 ---
-title: "Основы обработки данных с помощью R и Dplyr"
+title: "Практическая работа 003"
 author: "artem23mnd@yandex.ru"
 format: 
   md:
@@ -14,8 +14,8 @@ format:
 
 ## Исходные данные
 
-1. Операционная система Windows
-2. Интерпретатор языка программирования R
+1. Операционная система Windows 10
+2. Интерпретатор языка программирования R 4.5.2
 3. Редактор кода `Positron`
 
 ## Задание
@@ -166,7 +166,7 @@ flights %>% left_join(., airlines, join_by(carrier)) %>% filter(., month == 6)%>
 flights %>% left_join(., airlines, join_by(carrier)) %>% group_by(., name) %>% filter(., arr_delay > 0 & year == 2013) %>% summarise(., amount = n()) %>% arrange(., desc(amount)) %>% slice(., 1) %>% select(., name) %>% pull(.)  
 ```
 
-### Шаг 3
+### Шаг 2
 
 Отчёт написан и оформлен
 
