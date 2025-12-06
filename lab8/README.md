@@ -46,23 +46,17 @@ artem23mnd@yandex.ru
 
 #### Перейдем на сайт DataLens
 
-<figure>
-<img src="imgs\img1.png" alt="Сайт DataLens" />
-<figcaption aria-hidden="true">Сайт DataLens</figcaption>
-</figure>
+![](./imgs/img1.png)
 
 ### Выбрать “Подключения” – “Создать новое подключение”
 
-![](imgs\img2.png)
+![](./imgs/img2.png)
 
 ### Выбрать в разделе “Файлы и сервисы” Yandex Query
 
 ### Настроить и проверить подключение
 
-<figure>
-<img src="imgs\img3.png" alt="Настраиваем подключение" />
-<figcaption aria-hidden="true">Настраиваем подключение</figcaption>
-</figure>
+![](./imgs/img3.png)
 
 ### Шаг 2
 
@@ -71,7 +65,7 @@ artem23mnd@yandex.ru
 Перетащим из левой колонки результаты доступных запросов как датасет в
 правую часть экрвна. Внизу доступен предпросмотр датасета.
 
-![](imgs\img4.png)
+![](./imgs/img4.png)
 
 ### Шаг 3
 
@@ -79,48 +73,27 @@ artem23mnd@yandex.ru
 
 ### Представить в виде круговой диаграммы соотношение внешнего и внутреннего сетевого трафика.
 
-<figure>
-<img src="imgs\img5.png" alt="Код" />
-<figcaption aria-hidden="true">Код</figcaption>
-</figure>
+![](./imgs/img5.png)
 
-<figure>
-<img src="imgs\img6.png" alt="Круговая диаграмма" />
-<figcaption aria-hidden="true">Круговая диаграмма</figcaption>
-</figure>
+![](./imgs/img6.png)
 
 ### Представить в виде столбчатой диаграммы соотношение входящего и исходящего трафика из внутреннего сетевого сегмента
 
-<figure>
-<img src="imgs\img7.png" alt="Код" />
-<figcaption aria-hidden="true">Код</figcaption>
-</figure>
+![](./imgs/img7.png)
 
-<figure>
-<img src="imgs\img8.png" alt="Столбчатая диаграмма" />
-<figcaption aria-hidden="true">Столбчатая диаграмма</figcaption>
-</figure>
+![](./imgs/img8.png)
 
 ### Построить график активности (линейная диаграмма) объема трафика во времени.
 
-<figure>
-<img src="imgs\img9.png" alt="Код" />
-<figcaption aria-hidden="true">Код</figcaption>
-</figure>
+![](./imgs/img9.png)
 
-<figure>
-<img src="imgs\img10.png" alt="Линейная диаграмма" />
-<figcaption aria-hidden="true">Линейная диаграмма</figcaption>
-</figure>
+![](./imgs/img10.png)
 
 ### Шаг 4
 
 ### Составить дашборд
 
-<figure>
-<img src="imgs\img11.png" alt="Дашборд" />
-<figcaption aria-hidden="true">Дашборд</figcaption>
-</figure>
+![](./imgs/img11.png)
 
 [Ссылка на итоговый дашборд](https://datalens.ru/8r1m9bupufaut)
 

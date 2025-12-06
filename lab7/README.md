@@ -52,10 +52,7 @@ arrow-datasets S3 хранилища Yandex Object Storage.
 Перейдем по ссылке https://storage.yandexcloud.net/arrow-datasets и
 посомтрим доступность данных
 
-<figure>
-<img src="imgs/yaqry.png" alt="Доступность данных" />
-<figcaption aria-hidden="true">Доступность данных</figcaption>
-</figure>
+![](./imgs/yaqry.png)
 
 ## Шаг 2
 
@@ -65,28 +62,16 @@ arrow-datasets S3 хранилища Yandex Object Storage.
 учетом допустимых символов, выбрать тип аутентификации – публичный.
 Ввести имя бакета в соответствующее поле и сохранить )
 
-<figure>
-<img src="imgs/img3.png" alt="Соединение для бакета" />
-<figcaption aria-hidden="true">Соединение для бакета</figcaption>
-</figure>
+![](./imgs/img3.png)
 
 2.2. Создать и настроить привязку (Указать какой объект использовать в
 качестве источника данных).
 
-<figure>
-<img src="imgs/img4.png" alt="Настройка привязки данных" />
-<figcaption aria-hidden="true">Настройка привязки данных</figcaption>
-</figure>
+![](./imgs/img4.png)
 
-<figure>
-<img src="imgs/img5.png" alt="Опишем данные в колонках" />
-<figcaption aria-hidden="true">Опишем данные в колонках</figcaption>
-</figure>
+![](./imgs/img5.png)
 
-<figure>
-<img src="imgs/img6.png" alt="Успешное подключение" />
-<figcaption aria-hidden="true">Успешное подключение</figcaption>
-</figure>
+![](./imgs/img6.png)
 
 ### Шаг 3
 
@@ -96,27 +81,15 @@ arrow-datasets S3 хранилища Yandex Object Storage.
 принадлежащих интервалу \[12-14\]. Определим количество хостов
 внутренней сети, представленных в датасете
 
-<figure>
-<img src="imgs/img7.png" alt="Количество хостов внутренней сети" />
-<figcaption aria-hidden="true">Количество хостов внутренней
-сети</figcaption>
-</figure>
+![](./imgs/img7.png)
 
 3.2 Определите суммарный объем исходящего трафика
 
-<figure>
-<img src="imgs/img9.png" alt="Суммарный объем исходящего трафика" />
-<figcaption aria-hidden="true">Суммарный объем исходящего
-трафика</figcaption>
-</figure>
+![](./imgs/img9.png)
 
 3.3 Определите суммарный объем входящего трафика
 
-<figure>
-<img src="imgs/img10.png" alt="Суммарный объем входящего трафика" />
-<figcaption aria-hidden="true">Суммарный объем входящего
-трафика</figcaption>
-</figure>
+![](./imgs/img10.png)
 
 ### Шаг 4
 
