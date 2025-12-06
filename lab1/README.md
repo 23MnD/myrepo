@@ -41,11 +41,17 @@ artem23mnd@yandex.ru
     репозиторий
 
 ### Шаг 1
+1.  Установить интерпретатор R
+2.  Установить Rstudio IDE
+3.  Установить программный пакет swirl:
+    -   через интерфейс Rstudio IDE
+    -   или функцией R install.packages(“swirl”)
+
 
 ``` r
 sessionInfo()
 ```
-    
+4.  Запустить задание с помощью swirl::swirl()   
 <!-- -->
 
     > swirl::swirl()
